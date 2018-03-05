@@ -34,11 +34,18 @@ class BarGraph extends React.Component {
         return (
             <div className="barGraph">
             <h3>Planned vs Actual</h3>
+                <div className="row">
+
+
+                
+            <div className="col-lg-6">
                 <canvas id="myChart"
                         width="700px"
                         height="500px"
+                        // formData={this.props.formData}
                         ></canvas>
-
+            </div>
+            </div>
             </div>
         );
     }

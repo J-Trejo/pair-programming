@@ -18,9 +18,17 @@ class PieChart extends React.Component {
                 labels: ["housing", "groceries", "entertainment", "health care", "personal care", "savings", "debt/loan repayment"],
                 datasets: [
                     {
-                        label: "actual",
-                        backgroundColor: 'rgb(0, 255, 255)',
-                        data: [0, 10, 5, 2, 20, 30, 45],
+                        label: "housing",
+                        backgroundColor: [
+                                            'rgb(66, 176, 244)',
+                                            'rgb(125, 77, 175)',
+                                            'rgb(236, 242, 55)', 
+                                            'rgb(241, 104, 55)',
+                                            'rgb(54, 240, 138)',
+                                            'rgb(239, 53, 119)',
+                                            'rgb(221, 95, 4)'
+                                        ], 
+                        data: [75, 10, 5, 2, 20, 30, 45],
                     }
                 ]
             },
@@ -32,8 +40,8 @@ class PieChart extends React.Component {
     render() {
 
         return (
-            <div className="barGraph">
-                <h3>Doughnut</h3>
+            <div className="col">
+                <h3>How you spend your money</h3>
                 <canvas id="myPie"
                     width="700px"
                     height="500px"
