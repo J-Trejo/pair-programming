@@ -3,58 +3,43 @@ import React from 'react';
 class Form extends React.Component{
     constructor(){
         super();
-        this.state = {selectValue: ''}
+        this.state = { selectValue: 'Select Month'}
         this.collectData = this.collectData.bind(this);
+        this.selecthandle = this.selecthandle.bind(this);
     }
 
+    selecthandle(){
+        
+        const month = this.refs.selectMonth.value;
+        
+        this.props.monthSubmit(month);
+    }    
+   
     collectData(event){
         event.preventDefault();
-        //const data = new FormData(event.target);
-    //     let formData = {}
-    //     const data = formData = {
-    //         month: this.setState({selectValue: event.target.value}), 
-    //         rent: this.refs.rentInput.value,
-    //         utilities: this.refs.utilitiesInput.value,
-    //         transportation: this.refs.transportationInput.value,
-    //         groceries: this.refs.groceriesInput.value,
-    //         entertainment: this.refs.entertainmentInput.value,
-    //         personalCare: this.refs.personalCareInput.value,
-    //         healthCare: this.refs.healthCareInput.value,
-    //         debtLoanPayments: this.refs.debtInput.value,
-    //         savings: this.refs.savingsInput.value,
-    //   }
-
-        let formData = []
-        const data = formData = [
-            this.setState({ selectValue: event.target.value }),
-            this.refs.rentInput.value,
-            this.refs.utilitiesInput.value,
-            this.refs.transportationInput.value,
-            this.refs.groceriesInput.value,
-            this.refs.entertainmentInput.value,
-            this.refs.personalCareInput.value,
-            this.refs.healthCareInput.value,
-            this.refs.debtInput.value,
-            this.refs.savingsInput.value,
-        ]
-        console.log(data);
+        let htmlFormData = []
+        const data = htmlFormData = [
+            Number(this.refs.rentInput.value),
+            Number(this.refs.utilitiesInput.value),
+            Number(this.refs.transportationInput.value),
+            Number(this.refs.groceriesInput.value),
+            Number(this.refs.entertainmentInput.value),
+            Number(this.refs.personalCareInput.value),
+            Number(this.refs.healthCareInput.value),
+            Number(this.refs.debtInput.value),
+            Number(this.refs.savingsInput.value),
+        ];
+       //console.log(data);
      
-        this.props.handleSubmit(data)
-
-       
+        this.props.handleSubmit(data);
     }
 
     render(){
         return(
-            <div className="col-lg-6">
-        
-            <form   onSubmit={this.collectData}
-                    className="mx-auto">
                 <div className="form-group">
-                    <label for="selectMonth">Select Month</label>
-                    <select value={this.state.selectValue}
-                            onSubmit={this.collectData}
-                            className="form-control" ref="selectMonth" aria-describedby="month" placeholder="Select Month">
+                    <h4>Submit your Expenses</h4>
+                    <select onChange={this.selecthandle} className="form-control" ref="selectMonth" aria-describedby="month">
+                        <option value="Select Month">Select Month</option>
                         <option value="January">January</option>
                         <option value="February">February</option>
                         <option value="March">March</option>
@@ -67,48 +52,52 @@ class Form extends React.Component{
                         <option value="October">October</option>
                         <option value="November">November</option>
                         <option value="December">December</option>
-                    </select>
-                    <span className="expenseInput">
-                        <label for="rentInput">Rent: </label>
-                        <input type="text" ref="rentInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="utilitiesInput">Utilities: </label>
-                        <input type="text" ref="utilitiesInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="transportationInput">Transportation: </label>
-                        <input type="text" ref="transportationInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="groceriesInput">Groceries: </label>
-                        <input type="text" ref="groceriesInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="entertainmentInput">Entertainment: </label>
-                        <input type="text" ref="entertainmentInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="personalCareInput">Personal Care: </label>
-                        <input type="text" ref="personalCareInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="healthCareInput">Health Care: </label>
-                        <input type="text" ref="healthCareInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="debtInput">Debt/Loan Payments: </label>
-                        <input type="text" ref="debtInput" placeholder="$0.00" />
-                    </span>
-                    <span className="expenseInput">
-                        <label for="savingsInput">Savings: </label>
-                        <input type="text" ref="savingsInput" placeholder="$0.00" />
-                    </span>
-                    <h4> Total Expenses: $ </h4>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-            </div>
+                    </select>   
+                    <form onSubmit={this.collectData}>
+                    
+                        <span className="expenseInput">
+                            <label htmlFor="rentInput">Rent: </label>
+                            <input type="text" ref="rentInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="utilitiesInput">Utilities: </label>
+                            <input type="text" ref="utilitiesInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="transportationInput">Transportation: </label>
+                            <input type="text" ref="transportationInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="groceriesInput">Groceries: </label>
+                            <input type="text" ref="groceriesInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="entertainmentInput">Entertainment: </label>
+                            <input type="text" ref="entertainmentInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="personalCareInput">Personal Care: </label>
+                            <input type="text" ref="personalCareInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="healthCareInput">Health Care: </label>
+                            <input type="text" ref="healthCareInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="debtInput">Debt/Loan Payments: </label>
+                            <input type="text" ref="debtInput" placeholder="$0.00" />
+                        </span>
+                        <span className="expenseInput">
+                            <label htmlFor="savingsInput">Savings: </label>
+                            <input type="text" ref="savingsInput" placeholder="$0.00" />
+                        </span>
+                    <h5 className="float-left"> Total Expenses: $ </h5>
+                    <h5>Value</h5>
+                    
+                    <button type="submit" className="btn ">Submit</button>
+                </form>
+            </div> 
+            
         );
     }
 }

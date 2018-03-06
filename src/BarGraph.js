@@ -10,43 +10,60 @@ class BarGraph extends React.Component {
 
             // The data for our dataset
             data: {
-                labels: ["housing", "groceries", "entertainment", "health care", "personal care", "savings", "debt/loan repayment"],
+                labels: [
+                            "housing",
+                            "utilities",
+                            "transportation", 
+                            "groceries", 
+                            "entertainment", 
+                            "health care", 
+                            "personal care", 
+                            "savings", 
+                            "debt/loan repayment"
+                        ],
                 datasets: [
                 {
                 label: "budget/planned",
-                backgroundColor: 'rgb(0, 153, 153)',
-                data: [1000, 400, 150, 100, 80, 0, 100],
+                backgroundColor: 'rgba(0, 153, 153, 0.9)',
+                data: [1000, 200, 146, 400, 100, 150, 80, 100, 200],
                 },
                 {
-                label: "actual",
+                label: "actual/ month",
                 backgroundColor: 'rgb(0, 255, 255)',
-                data: [0, 10, 5, 2, 20, 30, 45],
+                data: this.props.formData,
                 }
             ]
             },
 
             // Configuration options go here
-            options: {}
+            options: {
+                legend: {
+                    position: 'right',
+                    
+                }
+            }
         });
     }
     render() {
+
+        // let canvasStyle = {
+        //     width: '700',
+        //     height: '600',
+        //     display: 'inline-block',
+        //     margin: '15px',
+        //     verticalAlign: 'top'
+        // };
         
         return (
-            <div className="barGraph">
-            <h3>Planned vs Actual</h3>
-                <div className="row">
-
-
-                
-            <div className="col-lg-6">
-                <canvas id="myChart"
-                        width="700px"
-                        height="500px"
-                        // formData={this.props.formData}
-                        ></canvas>
-            </div>
-            </div>
-            </div>
+                <div className="barGraph">
+                    <h4>Planned vs Actual</h4>
+                        <canvas  width="700px" height="400px" id="myChart"
+                                
+                                // formData={this.props.formData}
+                                ></canvas>
+                    
+                </div>
+               
         );
     }
 }
