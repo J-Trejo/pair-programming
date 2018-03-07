@@ -10,7 +10,7 @@ class App extends Component {
   	constructor(){
 		super();
 		this.state = {
-			formData:[],
+			formData:[100,50,150,200,600,345,70,160,250],
 			selectValue: 'Select Month' 
 			
 		};
@@ -25,8 +25,7 @@ class App extends Component {
 	}
 
 	handleSubmit(data){
-		let formDataCopy = Array.from(this.state.formData);
-		//formDataCopy.push(data);
+		
 		this.setState({
 		formData: data
 		});
@@ -46,10 +45,10 @@ class App extends Component {
 						<Switch>
 							<Route exact path="/" render={() =>
 									<div>
-										<Form handleSubmit={this.handleSubmit} montSubmit={this.monthSubmit}/>
-									<BarGraph formData={this.state.formData} montSubmit={this.monthSubmit} />
+									<Form handleSubmit={this.handleSubmit} monthSubmit={this.monthSubmit} formData={this.state.formData}/>
+										<BarGraph formData={this.state.formData} monthSubmit={this.monthSubmit} />
 									</div>} />
-							<Route path="/pieChart" render={() => <PieChart formData={this.state.formData} />} />
+							<Route path="/pieChart" render={() => <PieChart formData={this.state.formData} monthSubmit={this.monthSubmit} />} />
 						</Switch>
 					</div>
 					<hr/>

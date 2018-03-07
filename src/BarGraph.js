@@ -29,7 +29,17 @@ class BarGraph extends React.Component {
                 },
                 {
                 label: "actual/ month",
-                backgroundColor: 'rgb(0, 255, 255)',
+                    backgroundColor: [
+                                    'rgb(66, 176, 244)',
+                                    'rgb(125, 77, 175)',
+                                    'rgb(236, 242, 55)',
+                                    'rgb(0, 255, 216)',
+                                    'rgb(54, 240, 138)',
+                                    'rgb(239, 53, 119)',
+                                    'rgb(255, 96, 33)',
+                                    'rgb(80, 66, 244)',
+                                    'rgb(255, 8, 0)'
+                                ],
                 data: this.props.formData,
                 }
             ]

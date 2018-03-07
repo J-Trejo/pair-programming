@@ -8,17 +8,14 @@ class Form extends React.Component{
         this.selecthandle = this.selecthandle.bind(this);
     }
 
-    selecthandle(){
-        
+    selecthandle(event){
         const month = this.refs.selectMonth.value;
-        
         this.props.monthSubmit(month);
     }    
    
     collectData(event){
         event.preventDefault();
-        let htmlFormData = []
-        const data = htmlFormData = [
+        const data = [
             Number(this.refs.rentInput.value),
             Number(this.refs.utilitiesInput.value),
             Number(this.refs.transportationInput.value),
@@ -92,7 +89,7 @@ class Form extends React.Component{
                             <input type="text" ref="savingsInput" placeholder="$0.00" />
                         </span>
                     <h5 className="float-left"> Total Expenses: $ </h5>
-                    <h5>Value</h5>
+                    <h5>{this.props.formData.reduce(function(a,b){return a+b})}</h5>
                     
                     <button type="submit" className="btn ">Submit</button>
                 </form>
