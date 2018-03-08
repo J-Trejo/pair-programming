@@ -10,57 +10,47 @@ class App extends Component {
   	constructor(){
 		super();
 		this.state = {
-			formData:[100,50,150,200,600,345,70,160,250],
-			selectValue: 'Select Month' 
-			
+			formData:[0],
+			selectValue: '' 
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.monthSubmit= this.handleSubmit.bind(this);
 	}
 
-	monthSubmit(month){
-		this.setState({
-			selectValue: month
-		});
-	}
-
-	handleSubmit(data){
+	handleSubmit(data , month){
 		
 		this.setState({
-		formData: data
+		formData: data,
+		selectValue: month
 		});
-		//console.log(data);
 	}
 
   	render() {
     	return (
-      	<div className="App">
-				<div className="container-fluid">
-						<nav className="navbar navbar-expand-lg navbar-light bg-light">
-							<h1 className="navbar-brand"><img src="./icon.svg" alt="icon"/>Expense Tracker</h1>
-							<Link className="nav-item" to="/"><a className="nav-link">Home</a></Link>
-							<Link className="nav-item" to="/pieChart"><a className="nav-link">Pie Chart</a></Link>
-						</nav>
-					<div className="row">
-						<Switch>
-							<Route exact path="/" render={() =>
-									<div>
-									<Form handleSubmit={this.handleSubmit} monthSubmit={this.monthSubmit} formData={this.state.formData}/>
-										<BarGraph formData={this.state.formData} monthSubmit={this.monthSubmit} />
-									</div>} />
-							<Route path="/pieChart" render={() => <PieChart formData={this.state.formData} monthSubmit={this.monthSubmit} />} />
-						</Switch>
-					</div>
-					<hr/>
-					<div>
-					<h3>Forecast</h3>
-					</div>
+			<div className="App">
+					<div className="container-fluid">
+							<nav className="navbar navbar-expand-lg navbar-light bg-light">
+								<h1 className="navbar-brand"><img src="./icon.svg" alt="icon"/>Expense Tracker</h1>
+								<Link className="nav-item" to="/"><a className="nav-link">Home</a></Link>
+								<Link className="nav-item" to="/pieChart"><a className="nav-link">Pie Chart</a></Link>
+							</nav>
+						<div className="row">
+							<Switch>
+								<Route exact path="/" render={() =>
+										<div>
+										<Form handleSubmit={this.handleSubmit} formData={this.state.formData}/>
+										<BarGraph formData={this.state.formData} selectValue={this.state.selectValue}/>
+										</div>} />
+								<Route path="/pieChart" render={() => <PieChart formData={this.state.formData} selectValue={this.state.selectValue}/>} />
+							</Switch>
+						</div>
+						<hr/>
+						<div>
+							<h3>Forecast</h3>
+						</div>
+				</div>
 			</div>
-      </div>
-      
-     
-    );
-  }
+    	);
+  	}
 }
 
 export default App;

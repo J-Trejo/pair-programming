@@ -3,18 +3,16 @@ import React from 'react';
 class Form extends React.Component{
     constructor(){
         super();
-        this.state = { selectValue: 'Select Month'}
+        this.state = { 
+            value:null
+            
+        };
         this.collectData = this.collectData.bind(this);
-        this.selecthandle = this.selecthandle.bind(this);
     }
 
-    selecthandle(event){
-        const month = this.refs.selectMonth.value;
-        this.props.monthSubmit(month);
-    }    
-   
     collectData(event){
         event.preventDefault();
+        const month = this.refs.selectMonth.value;
         const data = [
             Number(this.refs.rentInput.value),
             Number(this.refs.utilitiesInput.value),
@@ -27,15 +25,26 @@ class Form extends React.Component{
             Number(this.refs.savingsInput.value),
         ];
        //console.log(data);
-     
-        this.props.handleSubmit(data);
+        
+        this.refs.rentInput.value = '';
+        this.refs.utilitiesInput.value = '';
+        this.refs.transportationInput.value = '';
+        this.refs.groceriesInput.value = '';
+        this.refs.entertainmentInput.value ='';
+        this.refs.personalCareInput.value ='';
+        this.refs.healthCareInput.value ='';
+        this.refs.debtInput.value = '';
+        this.refs.savingsInput.value ='';
+        this.refs.selectMonth.value = 'Select Month';
+    
+        this.props.handleSubmit(data , month);
     }
 
     render(){
         return(
                 <div className="form-group">
                     <h4>Submit your Expenses</h4>
-                    <select onChange={this.selecthandle} className="form-control" ref="selectMonth" aria-describedby="month">
+                    <select onSubmit={this.collectData} className="form-control" ref="selectMonth" aria-describedby="month">
                         <option value="Select Month">Select Month</option>
                         <option value="January">January</option>
                         <option value="February">February</option>
@@ -54,44 +63,43 @@ class Form extends React.Component{
                     
                         <span className="expenseInput">
                             <label htmlFor="rentInput">Rent: </label>
-                            <input type="text" ref="rentInput" placeholder="$0.00" />
+                            <input type="number" ref="rentInput" value={this.state.value} placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="utilitiesInput">Utilities: </label>
-                            <input type="text" ref="utilitiesInput" placeholder="$0.00" />
+                        <input type="number" ref="utilitiesInput" value={this.state.value} placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="transportationInput">Transportation: </label>
-                            <input type="text" ref="transportationInput" placeholder="$0.00" />
+                        <input type="number" ref="transportationInput" value={this.state.value} placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="groceriesInput">Groceries: </label>
-                            <input type="text" ref="groceriesInput" placeholder="$0.00" />
+                            <input type="number" ref="groceriesInput" placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="entertainmentInput">Entertainment: </label>
-                            <input type="text" ref="entertainmentInput" placeholder="$0.00" />
+                            <input type="number" ref="entertainmentInput" placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="personalCareInput">Personal Care: </label>
-                            <input type="text" ref="personalCareInput" placeholder="$0.00" />
+                            <input type="number" ref="personalCareInput" placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="healthCareInput">Health Care: </label>
-                            <input type="text" ref="healthCareInput" placeholder="$0.00" />
+                            <input type="number" ref="healthCareInput" placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="debtInput">Debt/Loan Payments: </label>
-                            <input type="text" ref="debtInput" placeholder="$0.00" />
+                            <input type="number" ref="debtInput" placeholder="$0.00" />
                         </span>
                         <span className="expenseInput">
                             <label htmlFor="savingsInput">Savings: </label>
-                            <input type="text" ref="savingsInput" placeholder="$0.00" />
+                            <input type="number" ref="savingsInput" placeholder="$0.00" />
                         </span>
                     <h5 className="float-left"> Total Expenses: $ </h5>
                     <h5>{this.props.formData.reduce(function(a,b){return a+b})}</h5>
-                    
-                    <button type="submit" className="btn ">Submit</button>
+                    <button type="number" className="btn ">Submit</button>
                 </form>
             </div> 
             

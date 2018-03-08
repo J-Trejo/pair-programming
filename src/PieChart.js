@@ -6,6 +6,7 @@ class PieChart extends React.Component {
     componentDidMount() {
         
         let ctx = document.getElementById('myPie').getContext('2d');
+        Chart.defaults.global.defaultFontSize = 13;
         let pieChart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'doughnut',
@@ -54,8 +55,10 @@ class PieChart extends React.Component {
         return (
             <div className="mx-auto">
                 <h4>How you spend your money</h4>
-                <canvas id="myPie" width="700px" height="400px"></canvas>
-
+                <h5>For the month of {this.props.selectValue}</h5>
+                <div className="pieChart">
+                    <canvas id="myPie"></canvas>
+                </div>
             </div>
         );
     }
