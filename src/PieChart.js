@@ -14,15 +14,15 @@ class PieChart extends React.Component {
             // The data for our dataset
             data: {
                 labels: [
-                            "housing",
-                            "utilities",
-                            "transportation",
-                            "groceries",
-                            "entertainment",
-                            "health care",
-                            "personal care",
-                            "savings",
-                            "debt/loan repayment"
+                        "Housing",
+                        "Utilities",
+                        "Transportation",
+                        "Groceries",
+                        "Entertainment",
+                        "Personal care",
+                        "Health care",
+                        "Debt/loan repayment",
+                        "Savings"
                         ],
                 datasets: [
                     {
@@ -35,8 +35,8 @@ class PieChart extends React.Component {
                                             'rgb(54, 240, 138)',
                                             'rgb(239, 53, 119)',
                                             'rgb(255, 96, 33)',
-                                            'rgb(80, 66, 244)',
-                                            'rgb(255, 8, 0)'
+                                            'rgb(255, 8, 0)',
+                                            'rgb(80, 66, 244)'
                                         ], 
                         data: this.props.formData,
                     }

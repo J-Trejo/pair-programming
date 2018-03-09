@@ -24,7 +24,7 @@ class Form extends React.Component{
             Number(this.refs.debtInput.value),
             Number(this.refs.savingsInput.value),
         ];
-       //console.log(data);
+       console.log(data);
         
         this.refs.rentInput.value = '';
         this.refs.utilitiesInput.value = '';
@@ -97,8 +97,11 @@ class Form extends React.Component{
                             <label htmlFor="savingsInput">Savings: </label>
                             <input type="number" ref="savingsInput" placeholder="$0.00" />
                         </span>
+                    <hr />    
+                    <div className="total">    
                     <h5 className="float-left"> Total Expenses: $ </h5>
                     <h5>{this.props.formData.reduce(function(a,b){return a+b})}</h5>
+                    </div>
                     <button type="number" className="btn ">Submit</button>
                 </form>
             </div> 
